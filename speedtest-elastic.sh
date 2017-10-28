@@ -11,7 +11,8 @@ for i in {1..18}; do
   let "r %= $range";
   number="$number""$r";
 done;
+datestring=`date  +%m.%Y`
 json=`"$speedtestdirectory"/speedtest-cli --secure --json`
 #echo $number
 #echo $json
-curl -XPUT -H 'Content-Type: application/json' http://"$es_url":9200/speedtest/test/"$number" -d"$json"
+curl -XPUT -H 'Content-Type: application/json' http://"$es_url":9200/speedtest-"$datestring"/test/"$number" -d"$json"
